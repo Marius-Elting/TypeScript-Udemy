@@ -143,5 +143,3 @@ const reserve: Reserve = (
 
 
 reserve(new Date(), new Date(), "string1", "string2")
-
-
