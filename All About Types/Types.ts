@@ -279,3 +279,187 @@ const hybridAnimal: HybridAnimal = {
 }
 
 
+//* INDEX SIGNATURES
+
+
+type newPlane = {
+    model: string;
+    flightNumber: string;
+    timeOfDeparture: Date;
+    timeOfArrival: Date;
+    seats: {
+        [key: string]: string
+    }
+}
+
+
+const newairplane: newPlane = {
+    model: "BIGBUS",
+    flightNumber: "A123",
+    timeOfArrival: new Date(),
+    timeOfDeparture: new Date(),
+    seats: {
+        "10A": "Mark",
+        "10B": "Peter"
+    }
+}
+//* ARRAY TYPE
+
+
+const arr1: number[] = [1, 2, 3]
+
+const arr2: Array<String> = ["1", "2", "3"]
+
+const arr3: (string | number)[] = ["1", "2", 3, 4]
+
+
+
+const newAirPlanes: newPlane[] = [
+    {
+        model: "BIGBUS",
+        flightNumber: "A123",
+        timeOfArrival: new Date(),
+        timeOfDeparture: new Date(),
+        seats: {
+            "10A": "Mark",
+            "10B": "Peter"
+        }
+    },
+    {
+        model: "NEWBIGBUS",
+        flightNumber: "A124",
+        timeOfArrival: new Date(),
+        timeOfDeparture: new Date(),
+        seats: {
+            "10A": "Mark",
+            "10B": "Peter"
+        }
+    }
+]
+
+
+//* TUPLES
+
+const newPerson: [string, string, number] = ["Mark", "Markie", 12]
+const newPerson2: [string, string, number?] = ["Mark", "Markie"]
+
+type listOfStudents = [number, boolean, ...string[]]
+
+
+const passingStudents: listOfStudents = [3, true, "John", "Stella", "Mark", "Marques"]
+
+const failingStudens: listOfStudents = [1, false, "Scott"]
+
+
+
+//* Read only ARRAY
+
+
+const numberArr: readonly number[] = [1, 2, 3]
+
+
+numberArr.push(1)
+//! ERROR (Property 'push' does not exist on type 'readonly number[]'.ts(2339))
+
+
+type readOnlyPerson = readonly [string, string, number]
+
+const personOne: readOnlyPerson = ["peter", "griffin", 23]
+
+personOne.push("mag")
+//! ERROR (Property 'push' does not exist on type 'readOnlyPerson'.ts(2339))
+
+// Other Method
+
+type readOnlyPerson2 = Readonly<[string, string, number]>
+
+
+
+//* VOID & NEVER TYPES
+
+// Returns void
+const addnumbers = (): void => {
+    console.log(2 + 4)
+}
+
+addnumbers()
+
+
+// Returns type never
+const throwNewError = (): never => {
+    // throw new Error("Big Error")
+}
+
+throwNewError()
+
+
+//* Enums
+
+enum Roles {
+    admin = "admin",
+    author = "author",
+    editor = "editor"
+}
+
+type newPerson1 = {
+    name: string;
+    email: string;
+    password: string;
+    role: Roles;
+}
+
+
+const enumPerson: newPerson1 = {
+    name: "John",
+    email: "john@aal.de",
+    password: "hello",
+    role: Roles.admin
+}
+
+console.log(enumPerson)
+
+type TypeOfLibary = 'national' | 'academic' | 'public'
+
+type Book = { title: string, pages: number, isbn: string }
+type Member = { name: string, phone: string, email?: string }
+
+type Libary = {
+    name: string;
+    address: string;
+    numberOfBooks: number;
+    type: TypeOfLibary;
+    books: Book[];
+    genres: string[];
+    members: Member[]
+}
+
+const library: Libary = {
+    name: "New York Library",
+    address: " 24, Some Street, New York",
+    numberOfBooks: 1254,
+    type: "national", // 'national', 'academic', 'public'
+    books: [
+        {
+            title: "Harry Potter",
+            pages: 756,
+            isbn: "9971-5-0210-0",
+        },
+        {
+            title: "Davinci Code",
+            pages: 386,
+            isbn: "9971-5-0210-0",
+        },
+    ],
+    genres: ["fiction", "history", "computers", "poetry"],
+    members: [
+        {
+            name: "John Doe",
+            phone: "+167678978",
+        },
+        {
+            name: "Mark Doe", // Name is mandatory
+            phone: "+167678978", // Phone is mandatory
+            email: "mark@email.com", // Can have additional optional fields
+        },
+    ],
+};
