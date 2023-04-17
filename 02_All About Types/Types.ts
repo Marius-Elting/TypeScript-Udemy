@@ -11,15 +11,16 @@ const anyObj: any = { type: "ANY" }
 
 function anyMultiByTwo(number: unknown) {
     //! ERROR ('number' is of type 'unknown'.)
+    // @ts-expect-error
     return number * 2
 }
 
 
 //* UNKNONW TYPE
 
-
 function unkownMultiByTwo(number: unknown) {
     //! ERROR ('number' is of type 'unknown'.)
+    // @ts-expect-error
     return number * 2
 }
 
@@ -30,11 +31,13 @@ function unkownMultiByTwo(number: unknown) {
 let booleanValue: boolean = false
 booleanValue = true
 
-
+// @ts-expect-error
 booleanValue = []
 //! ERROR (Type 'never[]' is not assignable to type 'boolean'.ts(2322))
+// @ts-expect-error
 booleanValue = {}
 //! ERROR (Type '{}' is not assignable to type 'boolean'.ts(2322))
+// @ts-expect-error
 booleanValue = undefined
 //! ERROR (Type 'undefined' is not assignable to type 'boolean'.ts(2322))
 //! [...]
@@ -46,8 +49,11 @@ let numberValue: number = 2
 numberValue = 2.3
 numberValue = -2.3
 
+// @ts-expect-error
 numberValue = ""
 //! ERROR (Type 'string' is not assignable to type 'number'.ts(2322))
+
+// @ts-expect-error
 numberValue = [1]
 //! ERROR (Type 'number[]' is not assignable to type 'number'.ts(2322))
 
@@ -88,6 +94,7 @@ stringType = 'Marius'
 
 stringType = stringType + " Elting"
 
+// @ts-expect-error
 stringType = 123
 //! ERROR (Type 'number' is not assignable to type 'string'.ts(2322))
 
@@ -96,7 +103,7 @@ stringType = 123
 
 
 let nameINTER = "Marius"
-
+// @ts-expect-error
 nameINTER = 2
 //! ERROR (Type 'number' is not assignable to type 'string'.ts(2322))
 // typescript sets the type automatic on declaration of the Variable
@@ -111,7 +118,7 @@ let personObject = {
     name: "Marius",
     age: 21
 }
-
+// @ts-expect-error
 personObject.age = "123"
 //! ERROR (Type 'string' is not assignable to type 'number'.ts(2322))
 
@@ -142,6 +149,7 @@ article = {
     author: "me",
     content: "cool",
     title: "The cool Book",
+    // @ts-expect-error
     subtitle: "this is cool"
     //! ERROR (Type '{ author: string; content: string; title: string; subtitle: string; }' is not assignable to type '{ author: string; content: string; title: string; image?: string | undefined; }'.
     //! Object literal may only specify known properties, and 'subtitle' does not exist in type '{ author: string; content: string; title: string; image?: string | undefined; }'.ts(2322))
@@ -357,7 +365,7 @@ const failingStudens: listOfStudents = [1, false, "Scott"]
 
 const numberArr: readonly number[] = [1, 2, 3]
 
-
+// @ts-expect-error
 numberArr.push(1)
 //! ERROR (Property 'push' does not exist on type 'readonly number[]'.ts(2339))
 
@@ -366,6 +374,7 @@ type readOnlyPerson = readonly [string, string, number]
 
 const personOne: readOnlyPerson = ["peter", "griffin", 23]
 
+// @ts-expect-error
 personOne.push("mag")
 //! ERROR (Property 'push' does not exist on type 'readOnlyPerson'.ts(2339))
 
@@ -386,6 +395,7 @@ addnumbers()
 
 
 // Returns type never
+// @ts-expect-error
 const throwNewError = (): never => {
     // throw new Error("Big Error")
 }

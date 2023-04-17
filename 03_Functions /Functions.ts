@@ -15,9 +15,11 @@ function intro4(name: string, age: number, country?: string): string {
     return "My Name is " + name + " and age is " + age
 }
 
+// @ts-expect-error
 console.log(intro4("john"))
 //! ERROR (Expected 2 arguments, but got 1.ts(2554))
 
+// @ts-expect-error
 console.log(intro4(1, 1))
 //! ERROR (Argument of type 'number' is not assignable to parameter of type 'string'.ts(2345))
 
