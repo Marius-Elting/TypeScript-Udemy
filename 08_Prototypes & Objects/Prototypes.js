@@ -48,7 +48,38 @@ User.prototype.addPoint = function () {
     console.log('total points', this.points);
 };
 
+
+function AdminUser(name, email, peopleReporting) {
+    User.apply(this, [name, email])
+    this.peopleReporting = peopleReporting
+}
+
+AdminUser.prototype = Object.create(User.prototype)
+
 const user = new User('John', 'john@email.com');
 
-console.log(user);
+const adminUser = new AdminUser("Johnny", "johnny@gmx.de", 10)
 
+// no need to do it like this user.prototype.addPoint
+user.addPoint()
+
+console.log(user);
+console.log(adminUser)
+
+const car = {
+    brand: "Mercedes",
+    ps: 160,
+    model: "C-Class"
+}
+
+Object.defineProperty(car, "brand", {
+    value: "Mercedes-Benz",
+    writable: false,
+    enumerable: true,
+    configurable: true
+})
+
+// dont changes any value 
+car.brand = "BMW"
+console.log(car)
+console.log(Object.getOwnPropertyDescriptors(car))
