@@ -3,7 +3,6 @@
 // method :> object
 // function :> window, global
 
-
 const book = {
     title: "Star Wars Thrawn",
     authors: ["john", "mark", "rob"],
@@ -33,8 +32,6 @@ function User(name, email) {
     this.points = 0;
 }
 
-
-
 User.prototype.login = function () {
     console.log(this.name, 'Has logged in');
 };
@@ -63,9 +60,6 @@ const adminUser = new AdminUser("Johnny", "johnny@gmx.de", 10)
 // no need to do it like this user.prototype.addPoint
 user.addPoint()
 
-console.log(user);
-console.log(adminUser)
-
 const car = {
     brand: "Mercedes",
     ps: 160,
@@ -81,5 +75,3 @@ Object.defineProperty(car, "brand", {
 
 // dont changes any value 
 car.brand = "BMW"
-console.log(car)
-console.log(Object.getOwnPropertyDescriptors(car))
