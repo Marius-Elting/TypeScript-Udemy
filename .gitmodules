@@ -1,3 +1,6 @@
 [submodule "Project_Frontend"]
 	path = Project_Frontend
 	url = https://github.com/Marius-Elting/TodoList-Frontend.git
+[submodule "Project_Backend"]
+	path = Project_Backend
+	url = https://github.com/Marius-Elting/TodoList-Backend
